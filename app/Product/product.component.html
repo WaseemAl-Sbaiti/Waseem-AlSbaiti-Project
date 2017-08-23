@@ -1,0 +1,60 @@
+<!--<h2>
+    No. Tasks = {{tasks.length}}
+</h2>
+
+<input type="text" #taskText (keyup)="handleKeyUp($event)">
+<button (click)="addNewTask(taskText.value)"> new Task</button>
+<ol>
+    <div class="leftA" *ngFor="let task of tasks">
+        <input type="checkbox" #chkbox [checked]="task.completed" (click)="task.setCompleted(! task.completed)"> {{task.toString()}}
+        <a href="#" (click)="removeTask(task)">  (X) </a>
+    </div>
+</ol>
+
+<button *ngIf="tasks.length > 1" (click)="completeAll(true)">Complete ALL</button>
+<button *ngIf="tasks.length > 1" (click)="completeAll(false)">Clear ALL</button>
+-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="raw">
+    <div class="col-md-6">
+        <div class="media" *ngFor="let pro of products">
+            <div class="media-left">
+                <img class="media-object" width="200" height="200" src="{{pro.cover}}">
+            </div>
+            <div class="media-body">
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <font>{{ pro.title }}</font>
+                    </h4>
+                    <font>{{ pro.author }}</font>
+                    <br><b>Price:</b> {{ pro.price }} $ <br><b>Qunatity:  </b>{{pro.qty}}<br> to Add Item With Qunatity:<input #Quntity type="text" maxlength="2" (focus)="Quntity.value='' " />
+                    <button class="btn btn-primary" (click)="addNewProduct(pro, Quntity.value)"> ADD Item to Cart </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div>
+            <div>
+                <table class="table">
+                    <th> Book Name </th>
+                    <th>Pricce</th>
+                    <th>Quntity</th>
+                    <th>Remove Book</th>
+                    <th>Update your Book Cart</th>
+                    <tr *ngFor="let pro of products">
+                        <td *ngIf="pro.getAdded()==true"> {{pro.name}}</td>
+                        <td *ngIf="pro.getAdded()==true">{{pro.price}}</td>
+                        <td *ngIf="pro.getAdded()==true">{{pro.addedQty}}</td>
+                        <td *ngIf="pro.getAdded()==true"><span class="glyphicon glyphicon-remove" (click)="removeProduct(pro)"></span></td>
+                        <td *ngIf="pro.getAdded()==true"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true" (click)="Incr(pro)"></span> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true" (click)="Decr(pro)"></span></td>
+                    </tr>
+                </table>
+                <div>
+                    Total Amount: <input type="text" #total value="{{CalculateTotal()}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
